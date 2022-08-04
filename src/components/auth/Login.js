@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { loginUser } from "../../managers/AuthManager"
-import "./Auth.css"
+import { loginUser } from "../managers/AuthManagers"
+import "./auth.css"
 
 
 export const Login = () => {
