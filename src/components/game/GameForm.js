@@ -74,7 +74,7 @@ export const GameForm = () => {
 
                 </input>
                 <div className="form-group">
-                    <label for="date">Date Released:</label>
+                    <label htmlFor="date">Date Released:</label>
                     <input type="number" id="releaseDate" name="releaseDate"
                         min="1000" max="9999"
                         value={currentGame.releaseDate}
@@ -93,11 +93,13 @@ export const GameForm = () => {
                     <label htmlFor="content" className="label">Categories: </label>
                     {
                         categories.map(cat => {
-                            return <><input type="checkbox" name={cat.label}
+                            return <div key={`category--${cat.id}`}>
+                                <input type="checkbox" name={cat.label}
                                 onClick={() => {
                                     catArr(cat.id)
                                 }} />
-                                <label htmlFor={cat.label}>{cat?.label}</label><br /></>
+                                <label htmlFor={cat.label}>{cat?.label}</label><br />
+                            </div>
                         })
 
                     }</div>
@@ -122,8 +124,7 @@ export const GameForm = () => {
                     }
 
                     // Send POST request to your API
-                    createGame(game)
-                        // .then(() => navigate("/games"))
+                    createGame(game).then(() => navigate("/games"))
                 }}
                 className="btn btn-primary">Create</button>
         </form>

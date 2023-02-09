@@ -7,5 +7,4 @@ export const createReview = (review) => {
         },
         body: JSON.stringify(review)
     })
-        .then()
 }
