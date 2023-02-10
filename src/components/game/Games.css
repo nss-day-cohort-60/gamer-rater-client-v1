@@ -5,3 +5,17 @@
 .gameForm {
     padding: 2rem;
 }
+
+.review {
+    border: 1px dotted darkgoldenrod;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.review__footer {
+    border-top: 1px dashed darkcyan;
+    font-size: small;
+    font-style: italic;
+    margin: 1rem 0 0 0;
+    padding: 0.5rem 0 0 0;
+}
