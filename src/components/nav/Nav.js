@@ -12,14 +12,14 @@ export const NavBar = () => {
                 <Link className='nav-link' to="/games">Games</Link>
             </li>
             <li className="navbar__item">
-                <Link className='nav-link' to="/events">Events</Link> 
+                <Link className='nav-link' to="/events">Events</Link>
             </li>
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("gamerrater_token") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("gamerrater_token")
                                 navigate('/login')
                             }}
                         >Logout</button>

@@ -3,7 +3,7 @@ export const createReview = (review) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            "Authorization": `Token ${localStorage.getItem("gamerrater_token")}`
         },
         body: JSON.stringify(review)
     })

@@ -28,15 +28,17 @@ export const GameForm = () => {
     }
 
     useEffect(() => {
-        getGame(gameId).then((data) => {
-            setCurrentGame(data)
+        if (gameId) {
+            getGame(gameId).then((data) => {
+                setCurrentGame(data)
 
-            const categorySet = new Set()
-            for (const category of data.categories) {
-                categorySet.add(category.id)
-            }
-            setGameCats(categorySet)
-        })
+                const categorySet = new Set()
+                for (const category of data.categories) {
+                    categorySet.add(category.id)
+                }
+                setGameCats(categorySet)
+            })
+        }
     }, [gameId])
 
 
@@ -79,27 +81,27 @@ export const GameForm = () => {
                     />
                 </div>
                 <label htmlFor="players">Minimum Number of Players:</label>
-                <input type="number" id="players" name="minimum_players" min="1" max="100"
+                <input type="number" id="players" name="min_players" min="1" max="100"
                     value={parseInt(currentGame.min_players)} onChange={changeGameState}>
                 </input>
                 <label htmlFor="players">Maximum Number of Players:</label>
-                <input type="number" id="players" name="maximum_players" min="1" max="1000000"
+                <input type="number" id="players" name="max_players" min="1" max="1000000"
                     value={parseInt(currentGame.max_players)} onChange={changeGameState}>
 
                 </input>
                 <div className="form-group">
                     <label htmlFor="date">Date Released:</label>
-                    <input type="number" id="releaseDate" name="releaseDate"
+                    <input type="number" id="releaseDate" name="year_released"
                         min="1000" max="9999"
                         value={currentGame.year_released}
                         onChange={changeGameState}></input>
                 </div>
                 <label htmlFor="time">Hours of Gameplay:</label>
-                <input type="number" id="time" name="time" min="1" max="100"
+                <input type="number" id="time" name="estimated_time" min="1" max="100"
                     value={parseInt(currentGame.estimated_time)} onChange={changeGameState}>
                 </input>
                 <label htmlFor="age">Age Rating:</label>
-                <input type="number" id="time" name="ageRating" min="1" max="100"
+                <input type="number" id="time" name="recommended_age" min="1" max="100"
                     value={parseInt(currentGame.recommended_age)} onChange={changeGameState}>
                 </input>
 
@@ -108,7 +110,7 @@ export const GameForm = () => {
                     {
                         categories.map(cat => {
                             // Compare current `id` and see if on object exists with that id in currentGame.categories
-                            const foundCategory = currentGame.categories.find(gameCategory => cat.id === gameCategory.id)
+                            const foundCategory = currentGame.categories.find(gameCategory => cat.id === gameCategory.category)
 
                             return <div key={`category--${cat.id}`}>
                                 <input type="checkbox" name={cat.label}
@@ -139,8 +141,6 @@ export const GameForm = () => {
                         year_released: currentGame.year_released,
                         categories: Array.from(gameCats)
                     }
-
-                    // Send POST request to your API
 
                     // If there is a gameId route parameter, invoke updateGame, otherwise createGame
                     if (gameId) {
